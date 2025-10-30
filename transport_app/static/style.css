@@ -1,0 +1,197 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6fb;
+  font-size: 12px;
+}
+
+.intro-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3);
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+  transition: transform 2s ease-in-out;
+}
+
+.logo.animate {
+  animation: logoAnimation 4s ease-in-out;
+}
+
+@keyframes logoAnimation {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.title, .subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-text {
+  opacity: 1;
+  transform: translateY(0);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #1f78d1;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #1f78d1;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #1f78d1;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    font-size: 10px;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
+  .overlay {
+    top: 50%;
+  }
+
+  .btn {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .table {
+    font-size: 10px;
+  }
+
+  .form-control {
+    font-size: 10px;
+  }
+
+  .btn-sm {
+    font-size: 8px;
+    padding: 2px 6px;
+  }
+
+  .navbar-brand {
+    font-size: 10px;
+  }
+
+  .nav-link {
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 8px;
+  }
+
+  .logo {
+    width: 40px;
+  }
+
+  .btn {
+    padding: 4px 8px;
+    font-size: 8px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .table {
+    font-size: 8px;
+  }
+
+  .form-control {
+    font-size: 8px;
+  }
+
+  .btn-sm {
+    font-size: 6px;
+    padding: 1px 4px;
+  }
+
+  .navbar-brand {
+    font-size: 8px;
+  }
+
+  .nav-link {
+    font-size: 8px;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .container-fluid {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

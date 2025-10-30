@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Add a Driver') }} — CWO Transportation{% endblock %}
+
+{% block content %}
+<h1>{{ _('Add a Driver') }}</h1>
+<form method="POST" action="{{ url_for('ajouter_conducteur') }}">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.nom.label(class="form-label") }}
+    {{ form.nom(class="form-control") }}
+    {% if form.nom.errors %}
+      {% for error in form.nom.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    {{ form.gain.label(class="form-label") }}
+    {{ form.gain(class="form-control") }}
+    {% if form.gain.errors %}
+      {% for error in form.gain.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    {{ form.miles.label(class="form-label") }}
+    {{ form.miles(class="form-control") }}
+    {% if form.miles.errors %}
+      {% for error in form.miles.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    {{ form.itineraire.label(class="form-label") }}
+    {{ form.itineraire(class="form-control") }}
+    {% if form.itineraire.errors %}
+      {% for error in form.itineraire.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="mb-3">
+    {{ form.date.label(class="form-label") }}
+    {{ form.date(class="form-control") }}
+    {% if form.date.errors %}
+      {% for error in form.date.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{ _('Add') }}</button>
+</form>
+
+<h2>{{ _('Or add an Investor') }}</h2>
+<a href="{{ url_for('add_investisseur') }}" class="btn btn-secondary">{{ _('Add an Investor') }}</a>
+{% endblock %}

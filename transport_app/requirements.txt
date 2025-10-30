@@ -1,0 +1,11 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+Flask-WTF==1.1.1
+Flask-Login==0.6.3
+Flask-Babel==4.0.0
+Flask-SocketIO==5.5.1
+python-socketio==5.14.2
+python-dotenv==1.0.0
+gunicorn==23.0.0
+psycopg2-binary==2.9.11
+pyngrok==7.4.1

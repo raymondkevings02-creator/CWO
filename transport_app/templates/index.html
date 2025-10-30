@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{ g.lang_code }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ _('Home') }} — CWO Transportation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="intro-container">
+  <img src="{{ url_for('static', filename='R.jpeg') }}" alt="Truck Background" class="background-image">
+  <div class="overlay">
+    <img src="{{ url_for('static', filename='cwo_2-removebg-preview (1).png') }}" alt="CWO Logo" class="logo" id="logo">
+    <h1 class="title" id="title">CWO Transportation</h1>
+    <p class="subtitle" id="subtitle">{{ _('Optimize transportation with transparency and performance') }}</p>
+  </div>
+</div>
+  <style>
+    @media (max-width: 768px) {
+      .overlay {
+        top: 60% !important;
+      }
+      .title {
+        font-size: 1.5rem !important;
+      }
+      .subtitle {
+        font-size: 1rem !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .overlay {
+        top: 70% !important;
+      }
+      .title {
+        font-size: 1.25rem !important;
+      }
+      .subtitle {
+        font-size: 0.875rem !important;
+      }
+    }
+  </style>
+
+  <script>
+    function playBeep() {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime); // Frequency in Hz
+      oscillator.type = 'sine'; // Wave type
+
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime); // Volume
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5); // Fade out
+
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.5); // Duration 0.5 seconds
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const logo = document.getElementById('logo');
+      const title = document.getElementById('title');
+      const subtitle = document.getElementById('subtitle');
+
+      // Play small beep sound and start animations
+      playBeep();
+      logo.classList.add('animate');
+      title.classList.add('animate-text');
+      subtitle.classList.add('animate-text');
+
+      // Redirect after animation and sound
+      setTimeout(function() {
+        window.location.href = '{{ url_for("conducteurs") }}';
+      }, 5000); // 5 seconds
+    });
+  </script>
+</body>
+</html>

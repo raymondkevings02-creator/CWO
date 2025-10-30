@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Actions Protégées — CWO Transportation{% endblock %}
+
+{% block content %}
+<h1>Actions Protégées</h1>
+<p>Vous avez accès aux actions suivantes :</p>
+<ul>
+  <li><a href="{{ url_for('liaison') }}" class="btn btn-primary">Ajouter un Conducteur</a></li>
+  <li><a href="{{ url_for('add_investisseur') }}" class="btn btn-primary">Ajouter un Investisseur</a></li>
+</ul>
+{% endblock %}

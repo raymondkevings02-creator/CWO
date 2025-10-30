@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Access Code') }} — CWO Transportation{% endblock %}
+
+{% block content %}
+<h1>{{ _('Enter Access Code') }}</h1>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.code.label(class="form-label") }}
+    {{ form.code(class="form-control") }}
+    {% if form.code.errors %}
+      {% for error in form.code.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

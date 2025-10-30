@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Administration') }} — CWO Transportation{% endblock %}
+
+{% block content %}
+<h1>{{ _('Administration') }}</h1>
+<a href="{{ url_for('logout') }}" class="btn btn-secondary mb-3">{{ _('Logout') }}</a>
+
+<h2>{{ _('Add a Driver') }}</h2>
+<form method="POST" action="{{ url_for('ajouter_conducteur') }}" class="mb-4">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+  <div class="row g-2">
+    <div class="col-12 col-sm-6 col-md-2">
+      <input type="text" name="nom" class="form-control" placeholder="{{ _('Name') }}" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-2">
+      <input type="number" step="0.01" name="gain" class="form-control" placeholder="{{ _('Gain ($)') }}" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-2">
+      <input type="number" name="miles" class="form-control" placeholder="{{ _('Miles') }}" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <input type="text" name="itineraire" class="form-control" placeholder="{{ _('Route') }}" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-2">
+      <input type="date" name="date" class="form-control" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-1">
+      <button type="submit" class="btn btn-primary w-100">{{ _('Add') }}</button>
+    </div>
+  </div>
+</form>
+
+<h2>{{ _('Add an Investor') }}</h2>
+<form method="POST" action="{{ url_for('add_investisseur') }}" class="mb-4">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+  <div class="row g-2">
+    <div class="col-12 col-sm-6 col-md-4">
+      <input type="text" name="nom" class="form-control" placeholder="{{ _('Name') }}" required>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4">
+      <input type="number" step="0.01" name="montant" class="form-control" placeholder="{{ _('Invested Amount ($)') }}" required>
+    </div>
+    <div class="col-12 col-sm-12 col-md-4">
+      <button type="submit" class="btn btn-primary w-100">{{ _('Add') }}</button>
+    </div>
+  </div>
+</form>
+
+<h2>{{ _('Drivers') }}</h2>
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>{{ _('Name') }}</th>
+      <th>{{ _('Miles') }}</th>
+      <th>{{ _('Date') }}</th>
+      <th>{{ _('Gain ($)') }}</th>
+      <th>{{ _('Route') }}</th>
+      <th>{{ _('Actions') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in conducteurs %}
+    <tr>
+      <td>{{ c.nom }}</td>
+      <td>{{ c.miles }}</td>
+      <td>{{ c.date }}</td>
+      <td>{{ "%.2f"|format(c.gain) }}</td>
+      <td>{{ c.itineraire }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('delete_conducteur', id=c.id) }}" style="display:inline;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ _('Are you sure you want to delete this driver?') }}')">{{ _('Delete') }}</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>{{ _('Investors') }}</h2>
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>{{ _('Name') }}</th>
+      <th>{{ _('Invested Amount ($)') }}</th>
+      <th>{{ _('Actions') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in investisseurs %}
+    <tr>
+      <td>{{ i.nom }}</td>
+      <td>{{ "%.2f"|format(i.montant) }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('delete_investisseur', id=i.id) }}" style="display:inline;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ _('Are you sure you want to delete this investor?') }}')">{{ _('Delete') }}</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
